@@ -1,0 +1,82 @@
+<template>
+  <div >
+    <h1 v-if="!pokemon">Espere por favor...</h1>
+    <div v-else>
+      <h1>¿Quien es este pokémon?</h1>
+      <!-- TODO:img-->
+    <PokemonPicture :pokemonId="pokemon.id" :showPokemon="showPokemon" />
+      <!-- TODO:Opciones-->
+    <PokemonOptions 
+    :pokemons="pokemonArr"
+    @selection-pokemon="checkAnswer($event)"
+    />
+
+    <template v-if="showAnswer" >
+     <h2 class="fade-in">{{message}}</h2>
+      <button @click="newGame">
+        Nuevo juego
+      </button>
+    </template>
+    
+    </div>
+      
+  </div>
+</template>
+
+<script>
+//Number, required
+import PokemonOptions from '../components/PokemonOptions.vue'
+import PokemonPicture from '../components/PokemonPicture.vue'
+import getPokemonOptions from '@/helpers/getPokemonOptions'
+//console.log(getPokemonOptions())
+
+export default {
+name:'Pokemon Page',
+components:{
+    PokemonOptions,
+    PokemonPicture
+},
+data() {
+  return {
+    pokemonArr:[],
+    pokemon:null,
+    showPokemon:false,
+    showAnswer: false,
+    message:''
+  }
+},
+methods: {
+  async mixPokemonArray(){
+    this.pokemonArr=await getPokemonOptions()
+    //Agarramos un pokemos de los 4
+    //de manera aleatoria
+    const rndInt=Math.floor(Math.random()*4)
+    this.pokemon=this.pokemonArr[rndInt]
+    console.log(this.pokemon)
+  },
+  checkAnswer(selectedid){
+    this.showPokemon=true
+    this.showAnswer=true
+    if(selectedid===this.pokemon.id){
+      this.message=`Correcto, es ${this.pokemon.name}`
+    }else{
+      this.message=`Oops fallaste, era ${this.pokemon.name}`
+    }
+    setTimeout(this.newGame, 3000)
+  },
+  newGame(){
+    this.showAnswer=false
+    this.showPokemon=false
+    this.pokemonArr=[]
+    this.pokemon=null
+    this.mixPokemonArray()
+    
+  }
+},
+//Es un metodo que se llama de una sola vez
+mounted() {
+  this.mixPokemonArray()
+},
+
+}
+</script>
