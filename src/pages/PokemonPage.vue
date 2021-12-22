@@ -1,8 +1,13 @@
 <template>
   <div >
+    <div class="head">
+      <h1 class="life">Vidas : {{life}}</h1>
+      <h1 class="points">Puntos : {{points}}</h1>
+    </div>
+    
     <h1 v-if="!pokemon">Espere por favor...</h1>
     <div v-else>
-      <h1>¿Quien es este pokémon?</h1>
+      <h1 >{{message_refresh}} </h1>
       <!-- TODO:img-->
     <PokemonPicture :pokemonId="pokemon.id" :showPokemon="showPokemon" />
       <!-- TODO:Opciones-->
@@ -42,7 +47,10 @@ data() {
     pokemon:null,
     showPokemon:false,
     showAnswer: false,
-    message:''
+    message:'',
+    message_refresh:'¿Quien es este pokémon?',
+    life:3,
+    points:0
   }
 },
 methods: {
@@ -55,20 +63,40 @@ methods: {
     console.log(this.pokemon)
   },
   checkAnswer(selectedid){
+
+    if(this.life>0){
     this.showPokemon=true
     this.showAnswer=true
     if(selectedid===this.pokemon.id){
       this.message=`Correcto, es ${this.pokemon.name}`
+      this.points+=10
     }else{
       this.message=`Oops fallaste, era ${this.pokemon.name}`
+      --this.life
     }
+    //Despues de 3 segundos de ser ejecutado se recargara la pagina
+    setTimeout(()=>{
+      this.message_refresh='Recargando en  3...'
+    },0)
+    setTimeout(()=>{
+      this.message_refresh='Recargando en  2...'
+    },1000)
+    setTimeout(()=>{
+      this.message_refresh='Recargando en  1...'
+    },2000)
     setTimeout(this.newGame, 3000)
+    }
+    else{
+      alert('Ya no te quedan vidas, recarga la pagina!')
+    }
+
   },
   newGame(){
     this.showAnswer=false
     this.showPokemon=false
     this.pokemonArr=[]
     this.pokemon=null
+    this.message_refresh='¿Quien es este pokémon?'
     this.mixPokemonArray()
     
   }
@@ -80,3 +108,17 @@ mounted() {
 
 }
 </script>
+<style scoped>
+.head{
+  display: flex;
+  justify-content: center;
+}
+.life{
+  color: blue;
+  width: 200px;
+}
+.points{
+  right: 1rem;
+  width: 200px;
+}
+</style>
