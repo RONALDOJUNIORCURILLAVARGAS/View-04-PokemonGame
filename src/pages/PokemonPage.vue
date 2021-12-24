@@ -64,7 +64,7 @@ methods: {
     //de manera aleatoria
     const rndInt=Math.floor(Math.random()*4)
     this.pokemon=this.pokemonArr[rndInt]
-    console.log(this.pokemon)
+    //console.log(this.pokemon)
   },
   checkAnswer(selectedid){
     if(this.counter_click){
