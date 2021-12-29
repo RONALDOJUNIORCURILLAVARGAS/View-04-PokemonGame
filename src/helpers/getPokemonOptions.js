@@ -1,6 +1,6 @@
 import pokemonApi from '@/api/pokemonApi'
 
-const getPokemon=()=>{
+export const getPokemon=()=>{
     //el array from crea un arreglo basado en  un arrgle de 650 espacios
     //que no se puede modificar 
     //por eso utilizamos array from 
@@ -19,7 +19,7 @@ const getPokemonOptions=async()=>{
     const pokemons=await getPokemonNames(mixedPokemon.splice(0,4))
     return pokemons
 }
-const getPokemonNames=async([a,b,c,d]=[])=>{
+export const getPokemonNames=async([a,b,c,d]=[])=>{
     /* const resp= await pokemonApi.get('/150')
     console.log(a,b,c,d)
     console.log(resp.data.name,resp.data.id) */
