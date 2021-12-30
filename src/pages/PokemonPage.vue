@@ -67,7 +67,7 @@ methods: {
     //console.log(this.pokemon)
   },
   checkAnswer(selectedid){
-    /* if(this.counter_click){ */
+    if(this.counter_click){
           if(this.life>0){
             this.counter_click=false
             this.showPokemon=true
@@ -95,11 +95,11 @@ methods: {
           this.showAnswer=true
           this.message='Ya no te quedan vidas, recarga la pagina mrd!'
         }
-      /* }
+      }
       else{
         this.message='Habil te crees mongol, ya no puedes cambiar'
       
-      }    */
+      }   
 
   },
   newGame(){

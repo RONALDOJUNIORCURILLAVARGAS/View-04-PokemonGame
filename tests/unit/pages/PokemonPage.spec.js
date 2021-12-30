@@ -91,7 +91,6 @@ describe('PokemonPage component', () => {
               }
         })
         //Llamamos el metodo desde aqui
-        console.log(wrapper.vm)
         //Como las propiedades son reactivas VUE tiene q esperar el cambio pór
         //eso se utilizara el await
         await wrapper.vm.checkAnswer(1)
@@ -99,7 +98,8 @@ describe('PokemonPage component', () => {
         expect(wrapper.vm.showPokemon).toBeTruthy()
         expect(wrapper.find('h2').text()).toBe(`Correcto, es ${pokemons[0].name}`)
         await wrapper.vm.checkAnswer(5)
-        expect(wrapper.vm.message).toBe(`Oops fallaste, era ${pokemons[0].name}`)
+        
+        expect(wrapper.vm.message).toBe(`Habil te crees mongol, ya no puedes cambiar`)
     })
 
     
