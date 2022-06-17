@@ -93,11 +93,11 @@ methods: {
         }
         else{
           this.showAnswer=true
-          this.message='Ya no te quedan vidas, recarga la pagina mrd!'
+          this.message='Ya no te quedan vidas'
         }
       }
       else{
-        this.message='Habil te crees mongol, ya no puedes cambiar'
+        this.message='Ya no puedes cambiar'
       
       }   
 
