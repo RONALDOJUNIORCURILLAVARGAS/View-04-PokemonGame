@@ -1,13 +1,22 @@
 <template>
-  <div >
+  <div class="content-app" >
+    <div class="headbar">
+      <img src="@/assets/pokemonbanner.png" alt="pokebanner" srcset="">
+    </div>
     <div class="head">
-      <h1 class="life">Vidas : {{life}}</h1>
-      <h1 class="points">Puntos : {{points}}</h1>
+      <h1 class="life">
+        <div class="box-life">
+          <img class="icon-heart" v-for="index in life" :key="index" src="@/assets/hearth-life.svg" alt="icon-hearth" srcset="">
+        </div>
+        
+      </h1>
+
+      <h1 class="points text-general">Puntos : {{points}}</h1>
     </div>
     
-    <h1 v-if="!pokemon">Espere por favor...</h1>
+    <h1 v-if="!pokemon" class="text-general">Espere por favor...</h1>
     <div v-else>
-      <h1 >{{message_refresh}} </h1>
+      <h1 class="text-general">{{message_refresh}} </h1>
       <!-- TODO:img-->
     <PokemonPicture :pokemonId="pokemon.id" :showPokemon="showPokemon" />
       <!-- TODO:Opciones-->
@@ -51,7 +60,7 @@ data() {
     showPokemon:false,
     showAnswer: false,
     message:'',
-    message_refresh:'¿Quien es este pokémon?',
+    message_refresh:'¿Quién es este Pokémon?',
     life:3,
     points:0,
     counter_click:true
@@ -127,16 +136,52 @@ mounted() {
 }
 </script>
 <style scoped>
+.text-general{
+  color: rgb(235, 231, 0);
+  text-shadow: 2px 2px 0 rgb(0, 95, 204), -2px -2px 0 rgb(0, 95, 204), 2px -2px 0 rgb(0, 95, 204), -2px 2px 0 rgb(0, 95, 204);
+}
+.content-app{
+  width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(to top, rgb(239, 83, 80), rgb(0, 95, 204));
+}
 .head{
   display: flex;
   justify-content: center;
 }
 .life{
-  color: blue;
+  color: #2c3e50;
   width: 200px;
+  display: block;
+  text-align: start;
+  font-size: 18px;
+}
+.box-life{
+  display: flex;
+  gap: 10px;
+}
+.icon-heart{
+  width: 20px;
+  height: 20px;
 }
 .points{
   right: 1rem;
   width: 200px;
+  font-size: 18px;
+}
+.headbar{
+  width: 100%;
+  height: 100px;
+  padding: 20px 0px;
+  display: flex;
+  justify-content: center;
+}
+@media only screen and (max-width: 600px) {
+  .headbar{
+    height: 60px;
+  }
+}
+.headbar img{
+  height: 100%;
 }
 </style>
