@@ -30,7 +30,7 @@
       
     </template>
     <template v-if="life===0">
-      <button @click="refreshpage">
+      <button class="btn-new-game" @click="refreshpage">
         Nuevo juego
       </button>
     </template>
@@ -139,6 +139,26 @@ mounted() {
 .text-general{
   color: rgb(235, 231, 0);
   text-shadow: 2px 2px 0 rgb(0, 95, 204), -2px -2px 0 rgb(0, 95, 204), 2px -2px 0 rgb(0, 95, 204), -2px 2px 0 rgb(0, 95, 204);
+}
+.btn-new-game{
+  padding: 10px 20px;
+  background-color: rgb(235, 231, 0);
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 24px;
+  color:rgb(0, 95, 204);
+  text-align: -webkit-match-parent;
+  letter-spacing: -1.5px;
+  transition: all .3s;
+  cursor: pointer;
+  user-select: none;
+  text-transform: uppercase;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+.btn-new-game:hover{
+  transform: scale(1.3);
 }
 .content-app{
   width: 100%;
